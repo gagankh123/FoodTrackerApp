@@ -4,7 +4,9 @@ channels:
   - conda-forge
 dependencies:
   - python=3.7.10=hdb3f193_0
-  - flask=2.2.2
-  - flask-sqlalchemy=3.0.5
-  - python-dotenv=0.21.0
+  - python-dotenv=0.21.0=py37h06a4308_0
+  - pip=22.3.1=py37h06a4308_0
+  - pip:
+    - flask==2.2.5
+    - flask-sqlalchemy==3.0.5
   
