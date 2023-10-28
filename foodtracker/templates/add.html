@@ -46,25 +46,25 @@
                             <i class="glyphicon glyphicon-plus-sign"></i> New Food Form
                         </h3>
                         <hr />
-                        <form action="" method="POST" role="form">
+                        <form action="{{ url_for('main.add') }}" method="POST" role="form">
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="food-name">Food Name</label>
-                                        <input type="text" class="form-control" id="food-name" name="food-name" placeholder="Food Name" autofocus>
+                                        <input type="text" class="form-control" id="food-name" name="food-name" placeholder="Food Name" value="{{ food.name }}" autofocus>
                                         
                                     </div>                                    
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="Protein">Protein</label>
-                                        <input type="number" class="form-control" id="protein" name="protein" placeholder="Protein">
+                                        <input type="number" class="form-control" id="protein" name="protein" value="{{ food.proteins }}" placeholder="Protein">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="Carbohydrate">Carbohydrate</label>
-                                        <input type="number" class="form-control" id="carbohydrate" name="carbohydrate" placeholder="Carbohydrate">
+                                        <input type="number" class="form-control" id="carbohydrate" name="carbohydrate" value="{{ food.carbs }}" placeholder="Carbohydrate">
 
                                         </div>
                                 </div>
@@ -73,12 +73,13 @@
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="fat">Fat</label>
-                                        <input type="number" name="fat" id="fat" class="form-control" placeholder="Fat">
+                                        <input type="number" name="fat" id="fat" class="form-control" value="{{ food.fats }}" placeholder="Fat">
                                     </div>
                                 </div>
                                 <div class="col-lg-4">
                                     <div class="form-group">
                                         <label style="visibility:hidden">submit</label>
+                                        <input type="hidden" name="food-id" value="{{ food.id }}">
                                         <button type="submit" class="btn btn-primary btn-block">
                                             <i class="glyphicon glyphicon-upload"></i> submit
                                         </button>
@@ -112,30 +113,20 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for food in foods %}
                                 <tr>
-                                    <td>1</td><td>Burger</td><td>20</td>
-                                    <td>25</td><td>15</td><td>315</td>
+                                    <td>{{ food.id }}</td><td>{{ food.name }}</td><td>{{ food.proteins }}</td>
+                                    <td>{{ food.carbs }}</td><td>{{ food.fats }}</td><td>{{ food.calories }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-default btn-xs">
+                                        <a href="{{ url_for('main.edit_food', food_id=food.id) }}" class="btn btn-default btn-xs">
                                             <i class="glyphicon glyphicon-pencil"></i> Edit
                                         </a>
-                                        <a href="#" class="btn btn-danger btn-xs">
+                                        <a href="{{ url_for('main.delete_food', food_id=food.id) }}" class="btn btn-danger btn-xs">
                                             <i class="glyphicon glyphicon-trash"></i> Delete
                                         </a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>1</td><td>Burger</td><td>20</td>
-                                    <td>25</td><td>15</td><td>315</td>
-                                    <td>
-                                        <a href="#" class="btn btn-default btn-xs">
-                                            <i class="glyphicon glyphicon-pencil"></i> Edit
-                                        </a>
-                                        <a href="#" class="btn btn-danger btn-xs">
-                                            <i class="glyphicon glyphicon-trash"></i> Delete
-                                        </a>
-                                    </td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
