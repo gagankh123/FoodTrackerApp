@@ -38,7 +38,7 @@ def create_log():
     db.session.add(log)
     db.session.commit()
 
-    return redirect(url_for('main.view'), log_id=log.id)
+    return redirect(url_for('main.view', log_id=log.id))
 
 @main.route('/add')
 def add():
